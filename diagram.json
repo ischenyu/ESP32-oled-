@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 61.33,
+      "left": -14.67,
+      "attrs": { "env": "micropython-20230426-v1.20.0" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -15.69,
+      "left": 71.15,
+      "attrs": { "distance": "400" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 43.71,
+      "left": 231.87,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 19.61,
+      "left": 424.22,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 224.6,
+      "left": 370.53,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 323.71,
+      "left": 404.88,
+      "attrs": { "i2cAddress": "0x3c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "ultrasonic1:VCC", "esp:VIN", "red", [ "v360", "h-178.24", "v-129.33" ] ],
+    [ "ultrasonic1:ECHO", "esp:D2", "green", [ "v0" ] ],
+    [ "ultrasonic1:TRIG", "esp:D15", "blue", [ "v0" ] ],
+    [ "ultrasonic1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:3V3", "bz1:1", "black", [ "v2.11", "h171.06" ] ],
+    [ "esp:D18", "bz1:2", "violet", [ "h0" ] ],
+    [ "esp:3V3", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "led1:A", "green", [ "v2.16", "h53.73" ] ],
+    [ "esp:D18", "led1:C", "green", [ "h0" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled1:SCL", "esp:D22", "blue", [ "v0" ] ],
+    [ "oled1:SDA", "esp:D21", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
